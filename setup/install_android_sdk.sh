@@ -14,7 +14,7 @@ function setup_android_sdk() {
     SDK_DIR="${HOME:?}/Android/Sdk"
     mkdir -p "${SDK_DIR}"
     if [ ! -f "${SDK_TOOLS}" ]; then
-        wget https://dl.google.com/android/repository/"${SDK_TOOLS}" -O /tmp/tools.zip
+        ariac2 https://dl.google.com/android/repository/"${SDK_TOOLS}" -O /tmp/tools.zip
     fi
     unzip -qo /tmp/tools.zip -d "${SDK_DIR}"
     while read -r package; do
