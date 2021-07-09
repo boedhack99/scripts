@@ -13,7 +13,7 @@ DEBIAN_10_PACKAGES="libncurses5"
 PACKAGES=""
 
 echo "Adding GitHub apt key and repository!"
-apt install software-properties-common
+apt install software-properties-common -y
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 apt-add-repository https://cli.github.com/packages
 
@@ -41,7 +41,7 @@ DEBIAN_FRONTEND=noninteractive \
     libexpat1-dev libgmp-dev '^liblz4-.*' '^liblzma.*' libmpc-dev libmpfr-dev libncurses5-dev \
     libsdl1.2-dev libssl-dev libtool libxml2 libxml2-utils '^lzma.*' lzop \
     maven ncftp ncurses-dev patch patchelf pkg-config pngcrush \
-    pngquant python2.7 python-all-dev re2c schedtool squashfs-tools subversion \
+    pngquant python2.7 python-all-dev re2c schedtool squashfs-tools subversion systemd \
     texinfo unzip w3m xsltproc zip zlib1g-dev lzip \
     libxml-simple-perl apt-utils gh \
     ${PACKAGES} -y
