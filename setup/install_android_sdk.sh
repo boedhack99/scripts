@@ -21,7 +21,7 @@ function setup_android_sdk() {
         yes | "${SDK_DIR}"/cmdline-tools/bin/sdkmanager --sdk_root="${SDK_DIR}" "${package:?}"
     done < "${CUR_DIR}"/setup/android-sdk-minimal.txt
     rm /tmp/tools.zip
-    cd - || exit
+    cd / || exit
 }
 
 setup_android_sdk
