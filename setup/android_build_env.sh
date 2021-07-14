@@ -9,14 +9,17 @@
 LATEST_MAKE_VERSION="4.3"
 UBUNTU_16_PACKAGES="libesd0-dev"
 UBUNTU_18_PACKAGES="curl"
-DEBIAN_20_PACKAGES="libncurses5 curl python-is-python3"
+UBUNTU_20_PACKAGES="libncurses5 curl python-is-python3"
 DEBIAN_10_PACKAGES="libncurses5"
 PACKAGES=""
 
 echo "Adding GitHub apt key and repository!"
 sudo apt install software-properties-common -y
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
+sudo add-apt-repository universe
+sudo add-apt-repository multiverse
+sudo add-apt-repository restricted
+#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+#sudo apt-add-repository https://cli.github.com/packages
 
 sudo apt update
 
@@ -46,7 +49,7 @@ DEBIAN_FRONTEND=noninteractive \
     maven ncftp ncurses-dev patch patchelf pkg-config pngcrush \
     pngquant python2.7 python-all-dev python-is-python3 re2c schedtool squashfs-tools subversion systemd \
     texinfo unzip w3m xsltproc zip zlib1g-dev lzip \
-    libxml-simple-perl apt-utils gh \
+    libxml-simple-perl \
     ${PACKAGES} -y
 
 echo -e "Setting up udev rules for adb!"
