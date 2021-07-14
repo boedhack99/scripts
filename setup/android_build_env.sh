@@ -14,14 +14,14 @@ DEBIAN_10_PACKAGES="libncurses5"
 PACKAGES=""
 
 echo "Adding GitHub apt key and repository!"
-apt install software-properties-common -y
+sudo apt install software-properties-common -y
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
 apt-add-repository https://cli.github.com/packages
 
 apt update
 
 # Install lsb-core packages
-apt install lsb-core -y
+sudo apt install lsb-core -y
 
 LSB_RELEASE="$(lsb_release -d | cut -d ':' -f 2 | sed -e 's/^[[:space:]]*//')"
 
@@ -36,7 +36,7 @@ elif [[ ${LSB_RELEASE} =~ "Debian GNU/Linux 10" ]]; then
 fi
 
 DEBIAN_FRONTEND=noninteractive \
-    apt install \
+    sudo apt install \
     adb autoconf automake axel bc bison build-essential \
     ccache clang cmake expat fastboot flex g++ \
     g++-multilib gawk gcc gcc-multilib git gnupg gperf \
@@ -49,11 +49,11 @@ DEBIAN_FRONTEND=noninteractive \
     libxml-simple-perl apt-utils gh \
     ${PACKAGES} -y
 
-echo -e "Setting up udev rules for adb!"
-curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L https://raw.githubusercontent.com/M0Rf30/android-udev-rules/master/51-android.rules
-chmod 644 /etc/udev/rules.d/51-android.rules
-chown root /etc/udev/rules.d/51-android.rules
-systemctl restart udev
+sudo echo -e "Setting up udev rules for adb!"
+sudo curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L https://raw.githubusercontent.com/M0Rf30/android-udev-rules/master/51-android.rules
+sudo chmod 644 /etc/udev/rules.d/51-android.rules
+sudo chown root /etc/udev/rules.d/51-android.rules
+sudo systemctl restart udev
 
 if [[ "$(command -v make)" ]]; then
     makeversion="$(make -v | head -1 | awk '{print $3}')"
@@ -63,6 +63,6 @@ if [[ "$(command -v make)" ]]; then
     fi
 fi
 
-echo "Installing repo"
-curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
-chmod a+rx /usr/local/bin/repo
+sudo echo "Installing repo"
+sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
+sudo chmod a+rx /usr/local/bin/repo
