@@ -15,10 +15,10 @@ PACKAGES=""
 
 echo "Adding GitHub apt key and repository!"
 sudo apt install software-properties-common -y
-apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-apt-add-repository https://cli.github.com/packages
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-add-repository https://cli.github.com/packages
 
-apt update
+sudo apt update
 
 # Install lsb-core packages
 sudo apt install lsb-core -y
@@ -49,7 +49,7 @@ DEBIAN_FRONTEND=noninteractive \
     libxml-simple-perl apt-utils gh \
     ${PACKAGES} -y
 
-sudo echo -e "Setting up udev rules for adb!"
+echo -e "Setting up udev rules for adb!"
 sudo curl --create-dirs -L -o /etc/udev/rules.d/51-android.rules -O -L https://raw.githubusercontent.com/M0Rf30/android-udev-rules/master/51-android.rules
 sudo chmod 644 /etc/udev/rules.d/51-android.rules
 sudo chown root /etc/udev/rules.d/51-android.rules
@@ -63,6 +63,6 @@ if [[ "$(command -v make)" ]]; then
     fi
 fi
 
-sudo echo "Installing repo"
+echo "Installing repo"
 sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
 sudo chmod a+rx /usr/local/bin/repo
